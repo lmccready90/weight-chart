@@ -9,13 +9,13 @@ namespace API.Controllers
         private readonly DataContext _context;
         public WeightLogsController(DataContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         [HttpGet] //api/weightLogs
         public async Task<ActionResult<List<Domain.WeightLog>>> GetWeightLogs()
         {
-            return await _context.WeightLog.ToListAsync();
+            return await _context.WeightLog.OrderBy(x => x.Date).ToListAsync();
         }
 
         [HttpGet("{id}")] //api/weightLogs/id
